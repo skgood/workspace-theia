@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-3
+  name: che-theia-4
   namespace: user1-che
 attributes:
   controller.devfile.io/devworkspace-config:
@@ -126,4 +126,4 @@ components:
       memoryLimit: 512M
       mountSources: true
       sourceMapping: /projects
-    name: theia-ide
+    name: theia-ide-custom
