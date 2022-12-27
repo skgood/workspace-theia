@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: empty-w1av
+  name: che-theia
   namespace: user1-che
 attributes:
   controller.devfile.io/devworkspace-config:
@@ -134,7 +134,3 @@ components:
         - name: theia-local
           path: /home/theia/.theia
     name: theia-ide
-  - name: plugins
-    volume: {}
-  - name: theia-local
-    volume: {}    
