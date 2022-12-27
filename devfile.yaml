@@ -117,8 +117,6 @@ components:
           secure: true
           targetPort: 3333
       env:
-        - name: THEIA_PLUGINS
-          value: 'local-dir:///plugins'
         - name: HOSTED_PLUGIN_HOSTNAME
           value: 0.0.0.0
         - name: HOSTED_PLUGIN_PORT
