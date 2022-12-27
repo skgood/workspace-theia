@@ -127,7 +127,4 @@ components:
       memoryLimit: 512M
       mountSources: true
       sourceMapping: /projects
-      volumeMounts:
-        - name: theia-local
-          path: /home/theia/.theia
     name: theia-ide
