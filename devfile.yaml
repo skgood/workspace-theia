@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-2
+  name: che-theia-3
   namespace: user1-che
 attributes:
   controller.devfile.io/devworkspace-config:
@@ -37,7 +37,6 @@ components:
         - name: plugins
           path: /plugins
     name: universal-developer-image
-components:    
   - attributes:
       app.kubernetes.io/component: che-theia
       app.kubernetes.io/part-of: che-theia.eclipse.org
