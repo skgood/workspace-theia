@@ -1,0 +1,94 @@
+schemaVersion: 2.1.0
+metadata:
+  name: theia-ide
+components:
+  - name: theia-ide
+    container:
+      image: aebt-arhud-docker.bart.sec.samsung.net/eclipse/che-theia@sha256:141bb55a440ce9fd91d553e6dd9af871f6f88b8789c19a169049feb142158602
+      env:
+        - name: THEIA_PLUGINS
+          value: local-dir:///plugins
+        - name: HOSTED_PLUGIN_HOSTNAME
+          value: 0.0.0.0
+        - name: HOSTED_PLUGIN_PORT
+          value: '3130'
+        - name: THEIA_HOST
+          value: 127.0.0.1
+      memoryLimit: 512M
+      cpuLimit: 1500m
+      cpuRequest: 100m
+      endpoints:
+        - name: theia
+          attributes:
+            type: main
+            cookiesAuthEnabled: true
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: webviews
+          attributes:
+            type: webview
+            cookiesAuthEnabled: true
+            discoverable: false
+            unique: true
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: mini-browser
+          attributes:
+            type: mini-browser
+            cookiesAuthEnabled: true
+            discoverable: false
+            unique: true
+            urlRewriteSupported: true
+          targetPort: 3100
+          exposure: public
+          secure: false
+          protocol: https
+        - name: theia-dev
+          attributes:
+            type: ide-dev
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 3130
+          exposure: public
+          protocol: http
+        - name: theia-redirect-1
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13131
+          exposure: public
+          protocol: http
+        - name: theia-redirect-2
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13132
+          exposure: public
+          protocol: http
+        - name: theia-redirect-3
+          attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          targetPort: 13133
+          exposure: public
+          protocol: http
+        - name: terminal
+          attributes:
+            type: collocated-terminal
+            discoverable: false
+            cookiesAuthEnabled: true
+            urlRewriteSupported: true
+          targetPort: 3333
+          exposure: public
+          secure: true
+          protocol: ws
+    attributes:
+      app.kubernetes.io/component: che-theia
+      app.kubernetes.io/part-of: che-theia.eclipse.org
