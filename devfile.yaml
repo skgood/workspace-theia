@@ -37,6 +37,7 @@ components:
         - name: plugins
           path: /plugins
     name: universal-developer-image
+components:    
   - attributes:
       app.kubernetes.io/component: che-theia
       app.kubernetes.io/part-of: che-theia.eclipse.org
