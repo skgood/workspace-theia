@@ -1,94 +1,140 @@
 schemaVersion: 2.1.0
 metadata:
-  name: theia-ide
+  name: empty-w1av
+  namespace: user1-che
+attributes:
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: eclipse-che
+  controller.devfile.io/storage-type: per-user
 components:
-  - name: theia-ide
+  - attributes:
+      app.kubernetes.io/name: universal-developer-image
+      che-theia.eclipse.org/vscode-extensions: []
     container:
-      image: aebt-arhud-docker.bart.sec.samsung.net/eclipse/che-theia@sha256:141bb55a440ce9fd91d553e6dd9af871f6f88b8789c19a169049feb142158602
+      args:
+        - sh
+        - '-c'
+        - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
+      env:
+        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+          value: /remote-endpoint/plugin-remote-endpoint
+        - name: THEIA_PLUGINS
+          value: 'local-dir:///plugins/sidecars/universal-developer-image'
+        - name: CHE_DASHBOARD_URL
+          value: 'https://192.168.49.2.nip.io'
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: 'https://192.168.49.2.nip.io/plugin-registry/v3'
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: 'http://plugin-registry.eclipse-che.svc:8080/v3'
+        - name: OPENVSX_REGISTRY_URL
+          value: 'https://open-vsx.org'
+      image: 'quay.io/devfile/universal-developer-image:ubi8-38da5c2'
+      sourceMapping: /projects
+      volumeMounts:
+        - name: remote-endpoint
+          path: /remote-endpoint
+        - name: plugins
+          path: /plugins
+    name: universal-developer-image
+  - attributes:
+      app.kubernetes.io/component: che-theia
+      app.kubernetes.io/part-of: che-theia.eclipse.org
+    container:
+      cpuLimit: 1500m
+      cpuRequest: 100m
+      endpoints:
+        - attributes:
+            cookiesAuthEnabled: true
+            discoverable: false
+            type: main
+            urlRewriteSupported: true
+          exposure: public
+          name: theia
+          protocol: https
+          secure: false
+          targetPort: 3100
+        - attributes:
+            cookiesAuthEnabled: true
+            discoverable: false
+            type: webview
+            unique: true
+            urlRewriteSupported: true
+          exposure: public
+          name: webviews
+          protocol: https
+          secure: false
+          targetPort: 3100
+        - attributes:
+            cookiesAuthEnabled: true
+            discoverable: false
+            type: mini-browser
+            unique: true
+            urlRewriteSupported: true
+          exposure: public
+          name: mini-browser
+          protocol: https
+          secure: false
+          targetPort: 3100
+        - attributes:
+            discoverable: false
+            type: ide-dev
+            urlRewriteSupported: true
+          exposure: public
+          name: theia-dev
+          protocol: http
+          targetPort: 3130
+        - attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          exposure: public
+          name: theia-redirect-1
+          protocol: http
+          targetPort: 13131
+        - attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          exposure: public
+          name: theia-redirect-2
+          protocol: http
+          targetPort: 13132
+        - attributes:
+            discoverable: false
+            urlRewriteSupported: true
+          exposure: public
+          name: theia-redirect-3
+          protocol: http
+          targetPort: 13133
+        - attributes:
+            cookiesAuthEnabled: true
+            discoverable: false
+            type: collocated-terminal
+            urlRewriteSupported: true
+          exposure: public
+          name: terminal
+          protocol: ws
+          secure: true
+          targetPort: 3333
       env:
         - name: THEIA_PLUGINS
-          value: local-dir:///plugins
+          value: 'local-dir:///plugins'
         - name: HOSTED_PLUGIN_HOSTNAME
           value: 0.0.0.0
         - name: HOSTED_PLUGIN_PORT
           value: '3130'
         - name: THEIA_HOST
           value: 127.0.0.1
+      image: 'aebt-arhud-docker.bart.sec.samsung.net/eclipse/che-theia@sha256:141bb55a440ce9fd91d553e6dd9af871f6f88b8789c19a169049feb142158602'
       memoryLimit: 512M
-      cpuLimit: 1500m
-      cpuRequest: 100m
-      endpoints:
-        - name: theia
-          attributes:
-            type: main
-            cookiesAuthEnabled: true
-            discoverable: false
-            urlRewriteSupported: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: webviews
-          attributes:
-            type: webview
-            cookiesAuthEnabled: true
-            discoverable: false
-            unique: true
-            urlRewriteSupported: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: mini-browser
-          attributes:
-            type: mini-browser
-            cookiesAuthEnabled: true
-            discoverable: false
-            unique: true
-            urlRewriteSupported: true
-          targetPort: 3100
-          exposure: public
-          secure: false
-          protocol: https
-        - name: theia-dev
-          attributes:
-            type: ide-dev
-            discoverable: false
-            urlRewriteSupported: true
-          targetPort: 3130
-          exposure: public
-          protocol: http
-        - name: theia-redirect-1
-          attributes:
-            discoverable: false
-            urlRewriteSupported: true
-          targetPort: 13131
-          exposure: public
-          protocol: http
-        - name: theia-redirect-2
-          attributes:
-            discoverable: false
-            urlRewriteSupported: true
-          targetPort: 13132
-          exposure: public
-          protocol: http
-        - name: theia-redirect-3
-          attributes:
-            discoverable: false
-            urlRewriteSupported: true
-          targetPort: 13133
-          exposure: public
-          protocol: http
-        - name: terminal
-          attributes:
-            type: collocated-terminal
-            discoverable: false
-            cookiesAuthEnabled: true
-            urlRewriteSupported: true
-          targetPort: 3333
-          exposure: public
-          secure: true
-          protocol: ws
-    attributes:
-      app.kubernetes.io/component: che-theia
-      app.kubernetes.io/part-of: che-theia.eclipse.org
+      mountSources: true
+      sourceMapping: /projects
+      volumeMounts:
+        - name: plugins
+          path: /plugins
+        - name: theia-local
+          path: /home/theia/.theia
+    name: theia-ide
+  - name: plugins
+    volume: {}
+  - name: theia-local
+    volume: {}    
