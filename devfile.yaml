@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia
+  name: che-theia-2
   namespace: user1-che
 attributes:
   controller.devfile.io/devworkspace-config:
@@ -128,8 +128,6 @@ components:
       mountSources: true
       sourceMapping: /projects
       volumeMounts:
-        - name: plugins
-          path: /plugins
         - name: theia-local
           path: /home/theia/.theia
     name: theia-ide
