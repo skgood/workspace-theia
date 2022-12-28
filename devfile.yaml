@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-06
+  name: che-theia-07
 attributes:
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
@@ -30,7 +30,7 @@ components:
           value: 'http://plugin-registry.eclipse-che.svc:8080/v3'
         - name: OPENVSX_REGISTRY_URL
           value: 'https://open-vsx.org'
-      image: 'quay.io/devfile/universal-developer-image:ubi8-38da5c2'
+      image: 'aebt-arhud-docker.bart.sec.samsung.net/eclipse/ubi:next'
       sourceMapping: /projects
       volumeMounts:
         - name: aebt-ide-test
