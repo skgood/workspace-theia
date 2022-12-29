@@ -30,7 +30,7 @@ components:
           value: 'http://plugin-registry.eclipse-che.svc:8080/v3'
         - name: OPENVSX_REGISTRY_URL
           value: 'https://open-vsx.org'
-      image: 'aebt-arhud-docker.bart.sec.samsung.net/eclipse/ubi:next
+      image: 'aebt-arhud-docker.bart.sec.samsung.net/eclipse/ubi:next'
       sourceMapping: /projects
       volumeMounts:
         - name: aebt-ide-test
