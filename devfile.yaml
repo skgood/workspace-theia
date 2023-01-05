@@ -15,8 +15,6 @@ components:
         - sh
         - '-c'
         - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
-        -  -v 
-        - '/var/run/docker.sock:/var/run/docker.sock'
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
@@ -30,7 +28,7 @@ components:
           value: 'http://plugin-registry.eclipse-che.svc:8080/v3'
         - name: OPENVSX_REGISTRY_URL
           value: 'https://open-vsx.org'
-      image: 'aebt-arhud-docker.bart.sec.samsung.net/eclipse/ubi@sha256:aa68592fe2ebad63e60c0e89871f199e54dfc8c237c59f46869c9ece111ce42f'
+      image: 'artifactory-mb.harman.com:5036/aebt/dms_build_elina:0.2'
       sourceMapping: /projects
       volumeMounts:
         - name: aebt-ide-test
