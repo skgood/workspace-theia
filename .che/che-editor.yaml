@@ -12,7 +12,7 @@ inline:
   components:
     - name: theia-ide
       container:
-        image: aebt-arhud-docker.bart.sec.samsung.net/eclipse/che-theia@sha256:141bb55a440ce9fd91d553e6dd9af871f6f88b8789c19a169049feb142158602
+        image: "artifactory-mb.harman.com:5036/aebt/che-theia:next-ubi8-v1"
         env:
           - name: THEIA_PLUGINS
             value: 'local-dir:///plugins'
