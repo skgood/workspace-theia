@@ -28,7 +28,7 @@ inline:
           - name: theia-local
             path: /home/theia/.theia
         mountSources: true
-        memoryLimit: 512M
+        memoryLimit: 3Gi
         cpuLimit: 1500m
         cpuRequest: 100m
         endpoints:
