@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-13
+  name: che-theia-14
 attributes:
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
@@ -31,9 +31,6 @@ components:
       image: 'docker:stable-dind'
       memoryLimit: 3Gi
       sourceMapping: /projects
-      hostPath:
-          - path: /var/run/docker.sock
-            type: Socket
       volumeMounts:
         - name: aebt-ide-test
           path: /home/aebt-ide-test
