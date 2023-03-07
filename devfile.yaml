@@ -28,7 +28,7 @@ components:
           value: 'http://plugin-registry.eclipse-che.svc:8080/v3'
         - name: OPENVSX_REGISTRY_URL
           value: 'https://open-vsx.org'
-      image: 'docker:stable-dind'
+      image: 'quay.io/devfile/universal-developer-image:ubi8-38da5c2'
       memoryLimit: 3Gi
       sourceMapping: /projects
       volumeMounts:
