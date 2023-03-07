@@ -11,10 +11,6 @@ components:
       app.kubernetes.io/name: universal-developer-image
       che-theia.eclipse.org/vscode-extensions: []
     container:
-      args:
-        - sh
-        - '-c'
-        - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
@@ -37,4 +33,4 @@ components:
     name: universal-developer-image
   - name: aebt-ide-test
     volume:
-      size: 1G
+      size: 4G
