@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-15
+  name: che-theia-16
 attributes:
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
