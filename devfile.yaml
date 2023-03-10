@@ -1,16 +1,8 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-17
-attributes:
-  controller.devfile.io/devworkspace-config:
-    name: devworkspace-config
-    namespace: eclipse-che
-  controller.devfile.io/storage-type: per-user
+  name: che-theia-18
 components:
-  - attributes:
-      app.kubernetes.io/name: universal-developer-image
-      che-theia.eclipse.org/vscode-extensions: []
-    container:
+  - container:
       env:
         - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
           value: /remote-endpoint/plugin-remote-endpoint
@@ -24,12 +16,16 @@ components:
           value: 'http://plugin-registry.eclipse-che.svc:8080/v3'
         - name: OPENVSX_REGISTRY_URL
           value: 'https://open-vsx.org'
-      image: 'quay.io/devfile/universal-developer-image:ubi8-0e189d9'
-      memoryLimit: 3Gi
+      image: 'quay.io/devfile/universal-developer-image:ubi8-38da5c2'
+      memoryLimit: 2Gi
       sourceMapping: /projects
     name: universal-developer-image
   - container:
+      args:
+        - sh
+        - '-c'
+        - 'tail -f /dev/null'
       image: 'artifactory-mb.harman.com:5036/aebt/dms_build_elina@sha256:7f41847b4be07d4a4ace54767609176b27435867a24149f3d01ed3096ee5a7ee'
       memoryLimit: 3Gi
       sourceMapping: /projects
-    name: dms-build-image    
+    name: dms-build-image
