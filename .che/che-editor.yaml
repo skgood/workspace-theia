@@ -1,7 +1,7 @@
 inline:
   schemaVersion: 2.1.0
   metadata:
-    name: AEBT-Theia
+    name: che-theia-editor
   commands:
     - id: init-remote-runtime-injector
       apply:
@@ -28,7 +28,7 @@ inline:
           - name: theia-local
             path: /home/theia/.theia
         mountSources: true
-        memoryLimit: 512M
+        memoryLimit: 3Gi
         cpuLimit: 1500m
         cpuRequest: 100m
         endpoints:
