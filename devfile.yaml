@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: che-theia-16
+  name: che-theia-17
 attributes:
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
@@ -31,6 +31,15 @@ components:
         - name: aebt-ide-test
           path: /home/aebt-ide-test
     name: universal-developer-image
+  - container:
+      args:
+        - sh
+        - '-c'
+        - 'tail -f /dev/null'
+      image: 'artifactory-mb.harman.com:5036/aebt/dms_build_elina@sha256:7f41847b4be07d4a4ace54767609176b27435867a24149f3d01ed3096ee5a7ee'
+      memoryLimit: 3Gi
+      sourceMapping: /projects
+    name: dms-build-image    
   - name: aebt-ide-test
     volume:
       size: 4G
