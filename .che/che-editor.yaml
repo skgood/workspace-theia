@@ -12,7 +12,7 @@ inline:
   components:
     - name: theia-ide
       container:
-        image: "artifactory-mb.harman.com:5036/aebt/che-theia:next-ubi8-v2"
+        image: "artifactory-mb.harman.com:5036/aebt/che-theia@sha256:1c4ab0b496db3379581f7c7028366602b56f6a6d6dca22bc85a266a1310c403a"
         env:
           - name: THEIA_PLUGINS
             value: 'local-dir:///plugins'
